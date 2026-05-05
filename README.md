@@ -1,105 +1,27 @@
-# 🧠 prompt-engineering-lab
+# 🛠️ PromptOps-Engine: Framework Enterprise para Orquestração e Governança Local de LLMs
 
-> **Coleção de prompts testados e documentados para casos reais — suporte técnico, automação, geração de conteúdo e integração com APIs.**
+Este repositório contém a implementação de um pipeline de **PromptOps** corporativo de nível sênior. O framework roda modelos open-source locais sem dependência de chaves de APIs proprietárias.
 
+## 🎯 Arquitetura de Produção e Fluxo de Dados
 
+```mermaid
+graph TD
+    A[Input do Usuário] --> B[Camada de Isolamento Cibernético: Guardrail]
+    B -- Risco de Injeção > 0.5 --> C[🚨 REQUISIÇÃO BLOQUEADA]
+    B -- Input Seguro --> D[FinOps Semantic Router]
+    D --> E[🤖 Core Computacional: Qwen 2.5 0.5B Instruct Local]
+```
 
-![Prompts](https://img.shields.io/badge/Prompts-20+-blueviolet?style=flat-square)
+### 🛡️ 1. Camada de Isolamento e Segurança (AI Guardrails)
+*   **Mecanismo:** Filtro determinístico integrado a um analisador semântico estruturado em JSON.
+*   **Proteção:** Bloqueio em tempo real contra técnicas de *Prompt Injection*, vazamento de *System Prompts* originais e *jailbreaks*.
 
+### 💰 2. Roteamento Inteligente (FinOps Optimization)
+*   **Mecanismo:** Roteador semântico para tomada de decisão de infraestrutura.
+*   **Impacto:** Direciona cargas de trabalho para instâncias edge locais com custo zero de tokens, otimizando o ROI do projeto.
 
-
-
-![Técnicas](https://img.shields.io/badge/Técnicas-Few--shot%20%7C%20CoT%20%7C%20Persona-orange?style=flat-square)
-
-
-
-
-![Status](https://img.shields.io/badge/Status-Em%20Atualização%20Contínua-brightgreen?style=flat-square)
-
-
-
-
-![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)
-
-
-
----
-
-## 📌 Sobre este repositório
-
-Este repositório documenta prompts que desenvolvi e refinei na prática — durante atendimentos técnicos, projetos de automação e experimentos pessoais com LLMs.
-
-Cada prompt inclui:
-- 🎯 **O problema real** que ele resolve
-- 🧪 **A técnica utilizada** (Few-shot, Chain of Thought, Persona, etc.)
-- ✅ **O prompt final** testado e refinado
-- 📊 **Exemplo de output** gerado
-- 💡 **O que aprendi** no processo
-
-> *"Um bom prompt não é sorte — é engenharia."*
-
----
-
-## 🗂️ Estrutura
-prompt-engineering-lab/
-├── 01-suporte-tecnico/
-│   ├── diagnostico-problemas.md
-│   ├── geracao-orcamentos.md
-│   └── resposta-clientes.md
-├── 02-automacao/
-│   ├── geracao-codigo-python.md
-│   ├── revisao-e-debug.md
-│   └── documentacao-automatica.md
-├── 03-conteudo/
-│   └── relatorios-tecnicos.md
-├── 04-tecnicas/
-│   └── guia-tecnicas.md
-└── README.md
----
-
-## 🛠️ Técnicas Utilizadas
-
-| Técnica | O que faz | Quando usar |
-|---|---|---|
-| **Few-shot** | Dá exemplos no prompt | Quando o formato importa |
-| **Chain of Thought** | Raciocínio passo a passo | Diagnósticos e análises |
-| **System Prompt / Persona** | Define identidade do modelo | Chatbots e assistentes |
-| **Role Prompting** | Expertise pontual | Código e análises técnicas |
-| **Structured Output** | Saída em JSON | Integração com Python |
-
----
-
-## 📚 Índice de Prompts
-
-### 🖥️ Suporte Técnico
-| # | Prompt | Técnica |
-|---|---|---|
-| 01 | Diagnóstico de Problemas | Chain of Thought |
-| 02 | Geração de Orçamentos | Few-shot |
-| 03 | Resposta Profissional a Clientes | Persona |
-
-### ⚙️ Automação
-| # | Prompt | Técnica |
-|---|---|---|
-| 04 | Geração de Código Python | Role Prompting |
-| 05 | Revisão e Debug | Chain of Thought |
-| 06 | Documentação Automática | Few-shot |
-
----
-
-## 👨‍💻 Autor
-
-**Victor Lisbôa de Siqueira**
-Técnico de Informática · Dev Python · Prompt Engineer em formação
-Porto Alegre, RS
-
-[
-
-![LinkedIn](https://img.shields.io/badge/LinkedIn-Victor%20Lisbôa-0077B5?style=flat-square&logo=linkedin)
-
-](https://www.linkedin.com/in/victor-lisboa-de-siqueira-a4bbb1357/)
-[
-
-![SENTINEL](https://img.shields.io/badge/Projeto-SENTINEL-0F3460?style=flat-square)
-
-](https://github.com/lisboadati123/sentinel)
+## ⚙️ Stack Tecnológico
+*   **Core:** Python 3.10+
+*   **Engine Executiva:** Hugging Face `transformers` & `accelerate`
+*   **Modelos Utilizados:** `Qwen/Qwen2.5-0.5B-Instruct` (Execução 100% local)
+*   **Tipagem:** `typing.Dict`, `typing.Any`
