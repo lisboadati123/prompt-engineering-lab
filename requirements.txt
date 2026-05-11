@@ -4,3 +4,9 @@ transformers>=4.45.0
 torch>=2.0.0
 accelerate>=0.30.0
 sentencepiece
+psutil>=5.9.0
+PyPDF2>=3.0.1
+transformers>=4.45.0
+torch>=2.0.0
+accelerate>=0.30.0
+sentencepiece
