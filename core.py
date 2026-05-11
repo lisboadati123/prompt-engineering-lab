@@ -12,41 +12,35 @@ class PromptOpsEngine:
         self.model_name = model_name
         self.log_file = "auditoria_seguranca.json"
         self.telemetry_file = "telemetria_hardware.json"
-        print(f"🤖 PromptOps-Engine Ativa: {self.model_name}")
+        print(f"🤖 PromptOps-Engine Active: {self.model_name}")
 
-    def monitorar_recursos(self, inicio: float):
-        """Módulo Sênior: Monitoramento de Performance e Hardware"""
-        tempo_total = (time.time() - inicio) * 1000
+    def monitor_resources(self, start_time: float):
+        """Senior Module: Hardware & Performance Monitoring"""
+        total_time = (time.time() - start_time) * 1000
         metrics = {
             "timestamp": datetime.now().isoformat(),
-            "latencia_ms": round(tempo_total, 2),
+            "latency_ms": round(total_time, 2),
             "cpu_percent": psutil.cpu_percent(),
             "ram_percent": psutil.virtual_memory().percent,
-            "status": "OPTIMAL" if tempo_total < 2000 else "DEGRADED"
+            "status": "OPTIMAL" if total_time < 2000 else "DEGRADED"
         }
         with open(self.telemetry_file, "a") as f:
             f.write(json.dumps(metrics) + "\n")
-        print(f"📊 Telemetria: {metrics['latencia_ms']}ms | RAM: {metrics['ram_percent']}%")
+        print(f"📊 Telemetry: {metrics['latency_ms']}ms | RAM: {metrics['ram_percent']}%")
 
-    def extrair_pdf(self, path: str) -> str:
-        """Módulo RAG: Extrai texto de PDFs para consulta."""
-        texto = ""
+    def extract_pdf(self, path: str) -> str:
+        """RAG Module: Extract text from PDFs."""
+        text = ""
         try:
-            with open(path, "rb") as f:
-                pdf = PdfReader(f)
-                for page in pdf.pages:
-                    texto += page.extract_text()
-            return texto
+            reader = PdfReader(path)
+            for page in reader.pages:
+                text += page.extract_text()
+            return text
         except Exception as e:
-            return f"Erro ao ler PDF: {e}"
+            return f"Error reading PDF: {e}"
 
-# Exemplo de uso para o seu portfólio
 if __name__ == "__main__":
     engine = PromptOpsEngine()
-    start_time = time.time()
-    
-    # Simulação de processamento
-    print("Processando governança local...")
-    time.sleep(1) 
-    
-    engine.monitorar_recursos(start_time)
+    start = time.time()
+    # Simulating work
+    engine.monitor_resources(start)
